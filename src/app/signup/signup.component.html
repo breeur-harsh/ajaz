@@ -5,14 +5,24 @@
     </a>
   </nb-layout-header>
   <nb-layout-column class="background">
-    <div class="overlay">
+    <div
+      class="overlay d-flex flex-column justify-content-center h-100 align-items-center"
+    >
+      <!-- The [formGroup] is a property of form tag in angular world
+      Since, I am using reactive programming. I have to specify which form to bind to.
+      i.e signupForm which i specified in the signup.component.ts file -->
+      <span
+        *ngIf="signupForm.status === 'INVALID' && signupForm.touched && signupForm.get('name').touched && signupForm.get('email').touched && signupForm.get('password').touched && signupForm.get('confirm_password').touched"
+        class="alert alert-danger w-50 text-center"
+        >Please fill all the required details</span
+      >
       <form
         [formGroup]="signupForm"
         (ngSubmit)="onSubmit()"
-        class="mx-auto d-flex flex-column justify-content-center h-100 align-items-center"
+        class="mx-auto"
         style="width: 300px"
       >
-        <h2 class="text-center">CREATE ACCOUNT</h2>
+        <h2 class="text-center font-italic">CREATE ACCOUNT</h2>
         <input
           type="text"
           name="name"
@@ -22,6 +32,13 @@
           placeholder="YOUR NAME"
           formControlName="name"
         />
+        <span
+          *ngIf="
+            signupForm.get('name').invalid && signupForm.get('name').touched
+          "
+          class="text-left text-danger w-100 ml-2"
+          >Name is required</span
+        >
         <input
           type="text"
           name="email"
@@ -32,6 +49,13 @@
           placeholder="CORPORATE EMAIL ID"
           formControlName="email"
         />
+        <span
+          *ngIf="
+            signupForm.get('email').invalid && signupForm.get('email').touched
+          "
+          class="text-left text-danger w-100 ml-2"
+          >Email is required</span
+        >
         <input
           type="password"
           name="password"
@@ -42,6 +66,14 @@
           placeholder="PASSWORD"
           formControlName="password"
         />
+        <span
+          *ngIf="
+            signupForm.get('password').invalid &&
+            signupForm.get('password').touched
+          "
+          class="text-left text-danger w-100 ml-2"
+          >Password is required</span
+        >
         <input
           type="password"
           name="confirm_password"
@@ -52,6 +84,15 @@
           placeholder="CONFIRM PASSWORD"
           formControlName="confirm_password"
         />
+        <!-- TODO: password matching logic to be added -->
+        <span
+          *ngIf="
+            signupForm.get('confirm_password').invalid &&
+            signupForm.get('confirm_password').touched
+          "
+          class="text-left text-danger w-100 ml-2"
+          >Confirm the password</span
+        >
         <input
           type="text"
           name="organization"
@@ -72,10 +113,16 @@
           placeholder="CITY"
           formControlName="city"
         />
-        <button type="submit" nbButton status="primary" class="mt-2 w-100">
-          SIGNUP
-        </button>
-        <button routerLink="/login" nbButton status="danger" class="mt-2 w-100">
+        <button nbButton status="primary" class="mt-2 w-100">SIGNUP</button>
+        <!-- buttons becomes by default type="submit"
+        hence for not loading form specify the type of button -->
+        <button
+          type="button"
+          routerLink="/login"
+          nbButton
+          status="danger"
+          class="mt-2 w-100"
+        >
           LOGIN
         </button>
       </form>
