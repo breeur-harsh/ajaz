@@ -1,0 +1,18 @@
+<nb-layout>
+  <nb-layout-header>
+    <a routerLink="/welcome">
+      <img src="/assets/images/logo.png" alt="logo" width="50px">
+    </a>
+  </nb-layout-header>
+  <nb-layout-column class="background">
+    <div class="overlay">
+      <form action="/login" class="mx-auto d-flex flex-column justify-content-center h-100" style="width:300px">
+        <h2 class="text-center">LOGIN</h2>
+        <input type="text" name="email" nbInput fullWidth status="basic" placeholder="CORPORATE EMAIL ID">
+        <input type="password" name="password" class="mt-2" nbInput fullWidth status="basic" placeholder="PASSWORD">
+        <button type="submit" nbButton status="primary" class="mt-2">LOGIN</button>
+        <button type="submit" routerLink="/signup" nbButton status="danger" class="mt-2">SIGNUP</button>
+      </form>
+    </div>
+  </nb-layout-column>
+</nb-layout>
