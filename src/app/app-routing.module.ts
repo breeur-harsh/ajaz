@@ -1,3 +1,5 @@
+// This file contains all the routing paths and logic
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

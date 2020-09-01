@@ -1,10 +1,84 @@
 <nb-layout>
   <nb-layout-header>
     <a routerLink="/welcome">
-      <img src="/assets/images/logo.png" alt="logo" width="50px">
+      <img src="/assets/images/logo.png" alt="logo" width="50px" />
     </a>
   </nb-layout-header>
-  <nb-layout-column>
-    signup content
+  <nb-layout-column class="background">
+    <div class="overlay">
+      <form
+        [formGroup]="signupForm"
+        (ngSubmit)="onSubmit()"
+        class="mx-auto d-flex flex-column justify-content-center h-100 align-items-center"
+        style="width: 300px"
+      >
+        <h2 class="text-center">CREATE ACCOUNT</h2>
+        <input
+          type="text"
+          name="name"
+          nbInput
+          fullWidth
+          status="basic"
+          placeholder="YOUR NAME"
+          formControlName="name"
+        />
+        <input
+          type="text"
+          name="email"
+          class="mt-2"
+          nbInput
+          fullWidth
+          status="basic"
+          placeholder="CORPORATE EMAIL ID"
+          formControlName="email"
+        />
+        <input
+          type="password"
+          name="password"
+          class="mt-2"
+          nbInput
+          fullWidth
+          status="basic"
+          placeholder="PASSWORD"
+          formControlName="password"
+        />
+        <input
+          type="password"
+          name="confirm_password"
+          class="mt-2"
+          nbInput
+          fullWidth
+          status="basic"
+          placeholder="CONFIRM PASSWORD"
+          formControlName="confirm_password"
+        />
+        <input
+          type="text"
+          name="organization"
+          class="mt-2"
+          nbInput
+          fullWidth
+          status="basic"
+          placeholder="ORGANIZATION"
+          formControlName="organization"
+        />
+        <input
+          type="text"
+          name="city"
+          class="mt-2"
+          nbInput
+          fullWidth
+          status="basic"
+          placeholder="CITY"
+          formControlName="city"
+        />
+        <button type="submit" nbButton status="primary" class="mt-2 w-100">
+          SIGNUP
+        </button>
+        <button routerLink="/login" nbButton status="danger" class="mt-2 w-100">
+          LOGIN
+        </button>
+      </form>
+    </div>
   </nb-layout-column>
 </nb-layout>
