@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -24,7 +25,11 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signupForm);
+    let userData: { name: string; email: string; password: string; confirm_password: string; organization: string; city: any } = this.signupForm.value;
+    this.http.post('https://ajaz-39d9e.firebaseio.com/users.json', userData)
+      .subscribe(responseData => {
+        console.log(responseData);
+      });
   }
 
 }
