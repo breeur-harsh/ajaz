@@ -6,14 +6,21 @@
   </nb-layout-header>
   <nb-layout-column class="background">
     <div
-      class="overlay d-flex flex-column justify-content-center h-100 align-items-center"
+      class="overlay d-flex flex-column justify-content-center h-100 align-items-center overflow-scroll"
     >
       <!-- The [formGroup] is a property of form tag in angular world
       Since, I am using reactive programming. I have to specify which form to bind to.
       i.e signupForm which i specified in the signup.component.ts file -->
       <span
-        *ngIf="signupForm.status === 'INVALID' && signupForm.touched && signupForm.get('name').touched && signupForm.get('email').touched && signupForm.get('password').touched && signupForm.get('confirm_password').touched"
-        class="alert alert-danger w-50 text-center"
+        *ngIf="
+          signupForm.status === 'INVALID' &&
+          signupForm.touched &&
+          signupForm.get('name').touched &&
+          signupForm.get('email').touched &&
+          signupForm.get('password').touched &&
+          signupForm.get('confirm_password').touched
+        "
+        class="alert alert-danger w-50 text-center mt-2"
         >Please fill all the required details</span
       >
       <form
@@ -22,7 +29,9 @@
         class="mx-auto"
         style="width: 300px"
       >
-        <h2 class="text-center font-italic">CREATE ACCOUNT</h2>
+        <h2 class="text-center font-italic" style="color: #69e039">
+          CREATE ACCOUNT
+        </h2>
         <input
           type="text"
           name="name"
@@ -72,7 +81,7 @@
             signupForm.get('password').touched
           "
           class="text-left text-danger w-100 ml-2"
-          >Password is required</span
+          >Password is required (min length: 6)</span
         >
         <input
           type="password"
@@ -113,15 +122,23 @@
           placeholder="CITY"
           formControlName="city"
         />
-        <button nbButton status="primary" class="mt-2 w-100">SIGNUP</button>
-        <!-- buttons becomes by default type="submit"
-        hence for not loading form specify the type of button -->
+        <button
+          type="submit"
+          nbButton
+          class="mt-2 w-100 text-white"
+          [ngStyle]="{
+            'background-color': signupForm.invalid ? 'grey' : '#69E039'
+          }"
+          [disabled]="signupForm.invalid"
+        >
+          SIGNUP
+        </button>
         <button
           type="button"
           routerLink="/login"
           nbButton
-          status="danger"
           class="mt-2 w-100"
+          style="background-color: #69e039 !important; color: white !important"
         >
           LOGIN
         </button>

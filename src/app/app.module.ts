@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SignupComponent } from './signup/signup.component';
     WelcomeComponent,
     LoginComponent,
     SignupComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
