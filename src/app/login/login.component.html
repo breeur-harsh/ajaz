@@ -1,21 +1,80 @@
 <nb-layout>
   <nb-layout-header>
     <a routerLink="/welcome">
-      <img src="/assets/images/logo.png" alt="logo" width="50px">
+      <img src="/assets/images/logo.png" alt="logo" width="50px" />
     </a>
   </nb-layout-header>
   <nb-layout-column class="background">
-    <div class="overlay">
-      <div action="/login" class="mx-auto d-flex flex-column justify-content-center h-100" style="width:300px">
-        <h2 class="text-center font-italic" >LOGIN</h2>
-        <input type="text" name="email" nbInput fullWidth status="basic" placeholder="CORPORATE EMAIL ID">
-        <input type="password" name="password" class="mt-2" nbInput fullWidth placeholder="PASSWORD">
-        <button type="submit" nbButton style="background-color: #828282 !important;
-        color: white !important;" class="mt-2">LOGIN</button>
-        <button type="submit" routerLink="/signup" nbButton class="mt-2" style="background-color: #69E039 !important;
-        color: white !important;">SIGNUP</button>
+    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="overlay">
+      <div
+        action="/login"
+        class="mx-auto d-flex flex-column justify-content-center h-100"
+        style="width: 300px"
+      >
+        <span
+          *ngIf="
+            error &&
+            loginForm.get('email').valid &&
+            loginForm.get('email').touched &&
+            loginForm.get('password').valid &&
+            loginForm.get('password').touched
+          "
+          class="alert-danger alert"
+          >{{ error }}</span
+        >
+        <h2 class="text-center font-italic">LOGIN</h2>
+        <input
+          type="text"
+          name="email"
+          nbInput
+          fullWidth
+          status="basic"
+          placeholder="CORPORATE EMAIL ID"
+          formControlName="email"
+        />
+        <span
+          *ngIf="
+            loginForm.get('email').invalid && loginForm.get('email').touched
+          "
+          class="text-danger ml-1"
+          >Please enter your email</span
+        >
+        <input
+          type="password"
+          name="password"
+          class="mt-2"
+          nbInput
+          fullWidth
+          placeholder="PASSWORD"
+          formControlName="password"
+        />
+        <span
+          *ngIf="
+            loginForm.get('password').invalid &&
+            loginForm.get('password').touched
+          "
+          class="text-danger ml-1"
+          >Password required*</span
+        >
+        <button
+          type="submit"
+          nbButton
+          style="background-color: #828282 !important; color: white !important"
+          class="mt-2"
+        >
+          LOGIN
+        </button>
+        <button
+          type="submit"
+          routerLink="/signup"
+          nbButton
+          class="mt-2"
+          style="background-color: #69e039 !important; color: white !important"
+        >
+          SIGNUP
+        </button>
       </div>
-    </div>
+    </form>
     <!-- #A30F29
     #69E039 -->
   </nb-layout-column>

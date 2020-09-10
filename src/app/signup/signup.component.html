@@ -21,11 +21,13 @@
           signupForm.get('confirm_password').touched
         "
         class="alert alert-danger w-50 text-center mt-2"
-        >Please fill all the required details</span
       >
+        Please fill all the required details
+      </span>
+      <span class="alert-danger alert" *ngIf="error">{{ error }}</span>
       <form
         [formGroup]="signupForm"
-        (ngSubmit)="onSubmit()"
+        (ngSubmit)="onSignUpSubmit()"
         class="mx-auto"
         style="width: 300px"
       >
@@ -83,6 +85,8 @@
           class="text-left text-danger w-100 ml-2"
           >Password is required (min length: 6)</span
         >
+        <span *ngIf="!passwordMatch && signupForm.get('password').valid &&
+        signupForm.get('password').touched && signupForm.get('confirm_password').touched" class="text-danger ml-2">Password is not equal to Confirm password</span>
         <input
           type="password"
           name="confirm_password"
