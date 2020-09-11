@@ -18,6 +18,7 @@ export interface AuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
+  loggedIn: boolean = false;
   constructor(private http: HttpClient) {}
 
   signup(email: string, password: string) {
@@ -33,7 +34,11 @@ export class AuthService {
       )
       .pipe(catchError(this.handleError));
   }
-
+  register(email: string, password: string) {
+    return this.http.post('http://breeur.in/food/register.php', {
+      email: email,
+    })
+  }
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(

@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
     let { email, password } = this.loginForm.value;
     this.loginAuthService.login(email, password).subscribe(
       (resData) => {
+        this.loginAuthService.loggedIn = true;
+        console.log(this.loginAuthService.loggedIn);
         console.log(resData);
       },
       (err) => {

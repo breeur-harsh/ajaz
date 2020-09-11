@@ -62,6 +62,9 @@ export class SignupComponent implements OnInit, DoCheck {
             this.error = errorRes;
           }
         );
+      // this.signupAuthService.register(userData.email, userData.password).subscribe(resdata => {
+      //   console.log(resdata);
+      // })
     } else {
       this.error = 'Password and confirm password did not matched';
     }
