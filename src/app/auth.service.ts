@@ -18,6 +18,7 @@ export interface AuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
+  // Variable that provides login status
   loggedIn: boolean = false;
   constructor(private http: HttpClient) {}
 

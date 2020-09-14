@@ -5,6 +5,7 @@
     </a>
   </nb-layout-header>
   <nb-layout-column class="background">
+    <app-loader>lorem</app-loader>
     <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="overlay">
       <div
         action="/login"
