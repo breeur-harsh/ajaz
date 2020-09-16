@@ -8,22 +8,23 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth-guard.service';
+import { LoaderComponent } from './loader/loader.component';
 
 const routes: Routes = [
   {
-    path: "", component: WelcomeComponent
+    path: '', component: WelcomeComponent
   },
   {
-    path: "welcome", component: WelcomeComponent
+    path: 'welcome', component: WelcomeComponent
   },
   {
-    path: "login", component: LoginComponent
+    path: 'login', component: LoginComponent
   },
   {
-    path: "signup", component: SignupComponent
+    path: 'signup', component: SignupComponent
   },
   {
-    path: "dashboard",canActivate: [AuthGuard], component: DashboardComponent
+    path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent
   }
 ];
 
